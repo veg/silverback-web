@@ -1,0 +1,62 @@
+<%- include includes/header.ejs %>
+
+
+
+<div id="container" class="container">
+  <div class="silverback-sm-header">
+    <h1>Account Request</h1>
+    <p>Get an account on Silverback</p>
+  </div>
+
+
+  <form role="form" method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="institution">Institution</label>
+      <input type="text" class="form-control" id="institution" placeholder="">
+    </div>
+
+    <div class="form-group">
+      <label for="institution">Description of what you'll be doing on Silverback</label>
+      <textarea class="form-control" id="description" placeholder=""></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>
+
+<span class="clearfix"></span>
+
+<%- include includes/footer.ejs %>
+
+<script>
+ $("form").submit(function(e) {
+
+    e.preventDefault();
+
+    var formData = new FormData();
+
+    formData.append('name', $( "#name" ).val());
+    formData.append('email', $( "#email" ).val());
+    formData.append('institution', $( "#institution" ).val());
+    formData.append('description', $( "#description" ).val());
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', '/account', true);
+
+    xhr.onload = function(res) {
+      $("#container").html(this.responseText);
+     };  
+
+    xhr.send(formData);
+
+  }); 
+</script>

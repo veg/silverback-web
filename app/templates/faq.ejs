@@ -1,0 +1,266 @@
+<%- include includes/header.ejs %>
+
+<div id="help-container" class="container">
+
+  <div class="silverback-sm-header">
+    <h1>Documentation</h1>
+    <p>Getting Started on Silverback</p>
+  </div>
+
+
+  <h3 class="page-header">Cluster Specifications</h3>
+
+  <div class="bs-callout bs-callout-info">
+    <p><b>Penguin Scyld ClusterWare Management</b></p>
+    <p><b>30 Nodes</b></p>
+    <p><b>632 Processors</b></p>
+  </div>
+
+    <p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Nodes</th>
+            <th># CPUs</th>
+            <th>CPU Type</th>
+            <th>Memory</th>
+          <tr>
+        </thead>
+        <tr>
+          <td>0-2</td><td>64</td><td>AMD Opteron Processor 6272</td><td>128GB</td>
+        </tr>
+        <tr>
+          <td>3-6</td><td>48</td><td>AMD Opteron Processor 6168</td><td>64GB</td>
+        </tr>
+        <tr>
+          <td>7-16</td><td>12</td><td>AMD Opteron Processor 2427</td><td>16GB</td>
+        </tr>
+        <tr>
+          <td>17-30</td><td>8</td><td>AMD Opteron Processor 2380</td><td>16GB</td>
+        </tr>
+      </table>
+    </p>
+      
+
+
+  <h3 class="page-header">Storage</h3>
+    <div class="bs-callout bs-callout-info">
+      <p>Default allotments can be increased upon review</p>
+    </div>
+
+    <p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Partition</th>
+            <th>Allotment</th>
+            <th>Comments</th>
+          <tr>
+        </thead>
+        <tr>
+          <td>/home/$user</td><td>500GB</td><td></td>
+        </tr>
+        <tr>
+          <td>/data/$project</td><td>2TB</td><td></td>
+        </tr>
+        <tr>
+          <td>/scratch/</td><td>100GB</td><td>SSD temporary storage per job</td>
+        </tr>
+      </table>
+    </p>
+
+
+  <h3 class="page-header">Transferring data files</h3>
+
+  <p> While <code>rsync</code> is recommended, using SFTP is also an option. 
+  <a href="http://cyberduck.io/">Cyberduck</a> supports the SFTP protocol.</p>
+  <p>
+    <ol>
+    <li>Open Cyberduck</li> 
+    <li>Click 'Open Connection'</li> 
+    <li>Select 'SFTP'</li> 
+    </ol>
+    Your username and password will be the same as your ssh login.
+  </p>
+  <img style="max-width: 100%;" src='assets/img/cyberduck.png' /> 
+
+
+  <h3 class="page-header">Rules</h3>
+
+  <div class="bs-callout bs-callout-danger">
+    <b>Running jobs on the head node is strictly prohibited</b> 
+    <p>Running a job on the head node is subject to being killed without prior consultation.</p>
+  </div>
+
+ 
+  <div class="bs-callout bs-callout-danger">
+    <b>Reserving Nodes and Processors</b>
+
+    <p>
+      For each job, you must reserve the correct number of nodes and
+      processors. If you are running a multiple processor job or an MPI job you need
+      to reserve the appropriate amount.     
+    </p>
+
+  </div>
+
+  <div class="bs-callout bs-callout-info">
+    <b>Installing Software</b> 
+    <p>Please submit requests to sweaver@ucsd.edu. Compiled software will be installed in <code>/opt/</code>.</p>
+  </div>
+ 
+  <h3 class="page-header">How To Run Jobs Using Scyld Clusterware Management Suite</h3>
+
+  <h4>bpsh</h4>
+
+    <div class="bs-callout bs-callout-info">
+      <p>For complete information on how to use bpsh, please consult the <a href="http://www.penguincomputing.com/wp-content/uploads/2014/08/scyld-clusterware-6-UsersGuide.pdf">Scyld ClusterWare User Guide</a></p>
+    </div>
+
+    <p>
+      <code>bpsh</code>, part of Scyld Clusterware Management, directly runs a
+      process on a compute node. Before using bpsh, run the command <code>beostatus -c</code>
+      in order to see which nodes are fit to use.
+    </p>
+      <h5>Example</h5>
+      <pre>
+               BeoStatus - 3.0
+        Node      State  CPU 0  CPU 1  CPU 2  CPU 3  CPU 4  CPU 5  CPU 6  CPU 7  CPU 8  CPU 9 CPU 10 CPU 11 CPU 12 CPU 13 CPU 14 CPU 15 CPU 16 CPU 17 CPU 18 CPU 19 CPU 20 CPU 21 CPU 22 CPU 23 CPU 24 CPU 25 CPU 26 CPU 27 CPU 28 CPU 29 CPU 30 CPU 31 CPU 32 CPU 33 CPU 34 CPU 35 CPU 36 CPU 37 CPU 38 CPU 39 CPU 40 CPU 41 CPU 42 CPU 43 CPU 44 CPU 45 CPU 46 CPU 47 CPU 48 CPU 49 CPU 50 CPU 51 CPU 52 CPU 53 CPU 54 CPU 55 CPU 56 CPU 57 CPU
+         -1          up  74.5%  27.8%  11.1%   3.0%  10.2%   8.2%  61.6%   3.0%  12.1%  18.4%  36.4%   2.0% 100.0%  16.7%  10.1%   4.0%
+          0          up   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+          1          up   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   1.0%   0.0%   0.0%   0.0%   0.0%
+          2          up 100.0%   0.0%   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%  10.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%  10.0%   0.0%   0.0%  11.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+          3          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0%
+          4          up   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0% 100.0%   3.0%   0.0%   0.0%   1.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   2.0%   0.0%   3.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+          5          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0%
+          6          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0%  99.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+          7          up   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+          8          up  99.0%   0.0%   0.0%   0.0%   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+          9          up   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+         10          up  99.0%  99.0%  99.0%  99.0% 100.0%  98.0%  99.0%  99.0% 100.0%  99.0% 100.0% 100.0%
+         11          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+         12          up 100.0%  98.0%  99.0%  99.0% 100.0% 100.0% 100.0%  99.0%  99.0% 100.0%  99.0% 100.0%
+         13          up 100.0%  98.0%  99.0%  98.0%  98.0%  99.0%  99.0%  99.0%  97.0%  99.0%  99.0%  98.0%
+         14          up 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+         15          up 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%  99.0% 100.0%  99.0% 100.0%
+         16          up 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+         17          up   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0%   0.0%
+         18          up 100.0% 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0%
+         19          up 100.0% 100.0% 100.0%  99.0% 100.0% 100.0% 100.0%  99.0%
+         20          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+         21          up 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0% 100.0%
+         22          up  99.0%  99.0% 100.0%  99.0% 100.0%  99.0% 100.0% 100.0%
+         23          up  89.9%  94.9%  83.2%  88.9%  92.0%  87.8%  92.9%  89.0%
+         24          up  36.4%  64.4%   4.0%  23.0%   3.0%   6.0%   3.0%   9.3%
+         25          up  65.3%  22.2%  63.0%  38.0%  22.5%  27.3%  35.4%  27.7%
+         26          up  82.0%  84.2%  75.0%  79.8%  79.0%  77.2% 100.0%  68.3%
+         27          up  71.3%   7.9%   3.0%  37.0%  27.7%   4.0%   0.0% 100.0%
+         28          up  52.0%   0.0%   0.0%   0.0%  48.0%  35.0%   0.0%   0.0%
+         29          up   2.0%  98.0%   2.0%   2.0%   2.0%   3.0%   2.0%  31.3%
+         30          up   3.0%  85.1%   4.0%   1.0%  17.0%   5.0%   0.0%  32.0%
+      </pre>
+    <p> 
+      According to the output of <code>beostatus -c</code>, <code>node 0</code> would be fit to use. One
+      can use <code>node 0</code> by issuing the following command
+      <pre>bpsh 0 sh -c 'echo hello from `hostname`'</pre>
+    </p>
+
+  <h4>mpirun</h4>
+
+  <div class="bs-callout bs-callout-info">
+    <p>For complete information on how to use <code>mpirun</code>, please consult <a href="http://www.penguincomputing.com/wp-content/uploads/2014/08/scyld-clusterware-6-UsersGuide.pdf"> the Scyld ClusterWare User Guide</a></p>
+  </div>
+
+  <p>As opposed to <code>bpsh</code>, nodes are not specified when using <code>mpirun</code>. The following command runs from the master node, and creates 30 processes on compute nodes.</p>
+  <h5>Example</h5>
+  <pre>mpirun --no-local -np 30 /usr/local/bin/hello_world_mpi</pre>
+
+  <h3 class="page-header">How To Run Jobs Using TORQUE</h3>
+
+  <div class="bs-callout bs-callout-warning">
+    <p>You must first create a TORQUE job script file in order to tell TORQUE how and what to execute on the nodes.</p>
+  </div>
+
+  <div class="bs-callout bs-callout-info">
+    <p>For complete information with regards to TORQUE job submission, consult the <a href="http://docs.adaptivecomputing.com/suite/8-0/basic/help.htm#topics/torque/2-jobs/multiJobSubmission.htm?TocPath=TORQUE%20Resource%20Manager|Submitting%20and%20managing%20jobs|Job%20submission|_____1">TORQUE User Manual</a></p>
+  </div>
+
+  <div class="bs-callout bs-callout-info">
+    <p>For complete information with regards to PBS Directives, use the command <code>man qsub</code> while logged into silverback</p>
+  </div>
+
+
+  <h4>Example</h4>
+  <p>Copy the following and name the file <code>test.sh</code></p>
+  <pre>
+  #!/bin/bash
+  #PBS -q batch
+  sleep 5
+  echo "Hello from `hostname`" 
+  </pre>
+
+  <p>Once the file is written, submit the command</p>
+  <pre>qsub test.sh</pre>
+
+  <p>When the job is completed, the standard output will be in the form of <code>test.sh.o[jobnumber]</code> and the standard error will be of the form <code>test.sh.e[jobnumber]</code>.
+
+  <h3 class="page-header">TORQUE Queues</h3>
+
+  <p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Queue Name</th>
+          <th>Max Jobs</th>
+          <th>Nodes</th>
+          <th>Comments</th>
+        <tr>
+      </thead>
+      <tr>
+        <td>batch</td><td>300</td><td>3-27</td><td>Default queue</td>
+      </tr>
+      <tr>
+        <td>fast</td><td>50</td><td>0-2</td><td></td>
+      </tr>
+      <tr>
+        <td>eternity</td><td>300</td><td>3-27</td><td>No idle time limit</td>
+      </tr>
+    </table>
+  </p>
+
+
+  <h3 class="page-header">View/Delete Job Submitted Jobs</h3>
+  <h4>View Job Statuses</h4>
+  <pre>qstat</pre>
+  <p>Jobs may have the following different status flags</p>
+   <p>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Explanation</th>
+        <tr>
+      </thead>
+      <tr><td>R</td><td>Job is currently running</td></tr>
+      <tr><td>W</td><td>Job is currently waiting to be submitted</td></tr>
+      <tr><td>E</td><td>There was an error running the job</td></tr>
+      <tr><td>S</td><td>Job is suspended (job overused the resources subscribed to it in the qsub command)</td></tr>
+    </table>
+  </p>
+   
+  <h4>List All Jobs</h4>
+  <p><pre>qstat -a</pre><p>
+
+  <h4>Deleting Jobs</h4>
+  <div class="bs-callout bs-callout-danger">
+    <p>Only the owner of the job can delete the respective job</p>
+  </div>
+
+  <p><pre>qdel [jobid]</pre><p>
+  
+  <p>You can also delete all of your jobs</p>
+  <p><pre>qdel all</pre><p>
+
+</div>
+
+<%- include includes/footer.ejs %>
