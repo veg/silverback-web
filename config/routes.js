@@ -31,6 +31,7 @@ module.exports = function(app) {
   home = require( ROOT_PATH + '/app/routes/home');
   app.get('/', home.homePage);
   app.get('/faq', home.faq);
+  app.get('/datamonkey', home.development);
   app.get('/account', home.account);
   app.post('/account', home.accountMail);
 
