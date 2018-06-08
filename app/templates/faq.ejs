@@ -12,8 +12,8 @@
 
   <div class="bs-callout bs-callout-info">
     <p><b>Penguin Scyld ClusterWare Management</b></p>
-    <p><b>30 Nodes</b></p>
-    <p><b>632 Processors</b></p>
+    <p><b>18 Nodes</b></p>
+    <p><b>1024 Processors</b></p>
   </div>
 
     <p>
@@ -27,22 +27,20 @@
           <tr>
         </thead>
         <tr>
-          <td>0-2</td><td>64</td><td>AMD Opteron Processor 6272</td><td>128GB</td>
+          <td>0-11</td><td>64</td><td>AMD Opteron Processor 6376</td><td>128GB</td>
         </tr>
         <tr>
-          <td>3-6</td><td>48</td><td>AMD Opteron Processor 6168</td><td>64GB</td>
+          <td>12-15</td><td>48</td><td>AMD Opteron Processor 6168</td><td>64GB</td>
         </tr>
         <tr>
-          <td>7-16</td><td>12</td><td>AMD Opteron Processor 2427</td><td>16GB</td>
-        </tr>
-        <tr>
-          <td>17-30</td><td>8</td><td>AMD Opteron Processor 2380</td><td>16GB</td>
+          <td>16-17</td><td>32</td><td>AMD Opteron Processor 6376</td><td>64GB</td>
         </tr>
       </table>
     </p>
       
 
 
+<!--
   <h3 class="page-header">Storage</h3>
     <div class="bs-callout bs-callout-info">
       <p>Default allotments can be increased upon review</p>
@@ -68,7 +66,7 @@
         </tr>
       </table>
     </p>
-
+-->
 
   <h3 class="page-header">Transferring data files</h3>
 
@@ -83,6 +81,7 @@
     Your username and password will be the same as your ssh login.
   </p>
   <img style="max-width: 100%;" src='assets/img/cyberduck.png' /> 
+  <span><code>Note: the hostname is now silverback.temple.edu</code></span>
 
 
   <h3 class="page-header">Rules</h3>
@@ -106,7 +105,7 @@
 
   <div class="bs-callout bs-callout-info">
     <b>Installing Software</b> 
-    <p>Please submit requests to sweaver@ucsd.edu. Compiled software will be installed in <code>/opt/</code>.</p>
+    <p>Please submit requests to sweaver@temple.edu. Compiled software will be installed in <code>/opt/</code>.</p>
   </div>
  
   <h3 class="page-header">How To Run Jobs Using Scyld Clusterware Management Suite</h3>
@@ -173,7 +172,7 @@
 
   <p>As opposed to <code>bpsh</code>, nodes are not specified when using <code>mpirun</code>. The following command runs from the master node, and creates 30 processes on compute nodes.</p>
   <h5>Example</h5>
-  <pre>mpirun --no-local -np 30 /usr/local/bin/hello_world_mpi</pre>
+  <pre>mpirun -H hostfile -np 30 /usr/local/bin/hello_world_mpi</pre>
 
   <h3 class="page-header">How To Run Jobs Using TORQUE</h3>
 
@@ -203,30 +202,6 @@
   <pre>qsub test.sh</pre>
 
   <p>When the job is completed, the standard output will be in the form of <code>test.sh.o[jobnumber]</code> and the standard error will be of the form <code>test.sh.e[jobnumber]</code>.
-
-  <h3 class="page-header">TORQUE Queues</h3>
-
-  <p>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Queue Name</th>
-          <th>Max Jobs</th>
-          <th>Nodes</th>
-          <th>Comments</th>
-        <tr>
-      </thead>
-      <tr>
-        <td>batch</td><td>300</td><td>3-27</td><td>Default queue</td>
-      </tr>
-      <tr>
-        <td>fast</td><td>50</td><td>0-30</td><td>Two additional nodes, and bypasses batch priority</td>
-      </tr>
-      <tr>
-        <td>eternity</td><td>300</td><td>3-27</td><td>No idle time limit. Lowest prirority.</td>
-      </tr>
-    </table>
-  </p>
 
 
   <h3 class="page-header">View/Delete Job Submitted Jobs</h3>
